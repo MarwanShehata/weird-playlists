@@ -7,7 +7,8 @@
 const clientId = import.meta.env.VITE_CLIENTID;
 const clientSecret = import.meta.env.VITE_CLIENTSECRET;
 const playlistId = '6XVNcaZKzxdErXvCj9JCEe';
-const fields = 'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id))';
+const fields =
+  'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id))';
 /* BY USING FIELDS I REDUCED THE DATA CONSUMPTION FROM 301KB TO 70KB (TESTED WITH Postman) */
 
 let accessToken;
@@ -103,7 +104,6 @@ const processTracks = (data) => {
       artistId,
     });
   });
-  console.log(tracksInfo);
   return tracksInfo;
 };
 
@@ -127,13 +127,7 @@ const processPlaylistInfo = (data) => {
     ownerName,
     ownerURL,
   });
-  console.log(playlistInfo);
   return playlistInfo;
 };
 
-const processAndDisplayTracks = async () => {
-  const { tracksInfo, playlistInfo } = await handleData();
-  console.log(tracksInfo);
-  console.log(playlistInfo);
-};
-processAndDisplayTracks();
+export { handleData };
