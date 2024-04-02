@@ -3,8 +3,8 @@
 
 // Fetch tracks from Spotify API
 /* Basic Auth */
-const clientId = 'e14d35dc1d3548e0bdc964833dd6d6e2';
-const clientSecret = '96b5e11e7c2f4771acd06818d69a7cce';
+const clientId = import.meta.env.VITE_CLIENTID;
+const clientSecret = import.meta.env.VITE_CLIENTSECRET;
 const playlistId = '6XVNcaZKzxdErXvCj9JCEe';
 
 const basicAuth = async () => {
