@@ -8,25 +8,25 @@ const clientId = import.meta.env.VITE_CLIENTID;
 const clientSecret = import.meta.env.VITE_CLIENTSECRET;
 const playlistId = '6XVNcaZKzxdErXvCj9JCEe';
 
+let accessToken;
+
 const basicAuth = async () => {
+    const authOptions = {
+        method: 'POST',
+        headers: {
+            Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'grant_type=client_credentials',
+    };
 
-}
-const authOptions = {
-    method: 'POST',
-    headers: {
-        Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: 'grant_type=client_credentials',
+    const response = await fetch(
+        'https://accounts.spotify.com/api/token',
+        authOptions,
+    );
+    const data = await response.json();
+    accessToken = data.access_token;
 };
-
-const response = await fetch(
-    'https://accounts.spotify.com/api/token',
-    authOptions,
-);
-const data = await response.json();
-const accessToken = data.access_token;
-console.log(accessToken);
 
 const fetchTracks = async (playlistId, accessToken) => {
     try {
@@ -37,7 +37,7 @@ const fetchTracks = async (playlistId, accessToken) => {
             },
         };
         const response = await fetch(
-            `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+            `https://api.spotify.com/v1/playlists/${playlistId}/`,
             fetchOptions,
         );
 
@@ -51,14 +51,16 @@ const fetchTracks = async (playlistId, accessToken) => {
     }
 };
 
-
 /* Handling Data */
 const handleData = async () => {
     try {
         await basicAuth();
         const fetchedData = await fetchTracks(playlistId, accessToken);
+        console.log(fetchedData);
         if (fetchedData) {
-            return processTracks(fetchedData);
+            const playlistInfo = processPlaylistInfo(fetchedData);
+            const tracksInfo = processTracks(fetchedData);
+            return { playlistInfo, tracksInfo };
         } else {
             console.error(`Failed to fetch the tracks`);
             return null;
@@ -73,7 +75,7 @@ const handleData = async () => {
 const processTracks = (data) => {
     let tracksInfo = [];
 
-    data.items.forEach((item) => {
+    data.tracks.items.forEach((item) => {
         /* <Misc> */
         const trackSpotifyLink = item.track.external_urls.spotify;
         const previewThumbnailLink = item.track.album.images[0].url;
@@ -101,16 +103,37 @@ const processTracks = (data) => {
     });
     console.log(tracksInfo);
     return tracksInfo;
-    console.log(tracksInfo);
+};
+
+const processPlaylistInfo = (data) => {
+    let playlistInfo = [];
+
+    /* <Misc> */
+    const playlistSpotifyLink = data.external_urls.spotify;
+    const previewThumbnailLink = data.images[0].url;
+    const playlistID = data.id;
+    const playlistDescription = data.description;
+    /* Owner */
+    const ownerName = data.owner.display_name;
+    const ownerURL = data.owner.external_urls.spotify;
+
+    playlistInfo.push({
+        playlistSpotifyLink,
+        previewThumbnailLink,
+        playlistID,
+        playlistDescription,
+        ownerName,
+        ownerURL,
+    });
+    console.log(playlistInfo);
+    return playlistInfo;
 };
 
 const processAndDisplayTracks = async () => {
-    const tracksInfo = await handleData();
+    const { tracksInfo, playlistInfo } = await handleData();
     console.log(tracksInfo);
+    console.log(playlistInfo);
 };
-
-
-// Call the function
 processAndDisplayTracks();
 
 ////////////////////////////////////////////////////////////////////
