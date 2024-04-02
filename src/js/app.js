@@ -26,6 +26,7 @@ const response = await fetch(
 );
 const data = await response.json();
 const accessToken = data.access_token;
+console.log(accessToken);
 
 const fetchTracks = async (playlistId, accessToken) => {
     try {
@@ -54,13 +55,17 @@ const fetchTracks = async (playlistId, accessToken) => {
 /* Handling Data */
 const handleData = async () => {
     try {
+        await basicAuth();
         const fetchedData = await fetchTracks(playlistId, accessToken);
         if (fetchedData) {
-            processTracks(fetchedData);
+            return processTracks(fetchedData);
         } else {
             console.error(`Failed to fetch the tracks`);
+            return null;
         }
     } catch (error) {
+        console.error(error);
+        return null;
     }
 };
 
@@ -94,10 +99,19 @@ const processTracks = (data) => {
             artistId,
         });
     });
+    console.log(tracksInfo);
     return tracksInfo;
+    console.log(tracksInfo);
 };
-const tracksInfo = handleData()
 
+const processAndDisplayTracks = async () => {
+    const tracksInfo = await handleData();
+    console.log(tracksInfo);
+};
+
+
+// Call the function
+processAndDisplayTracks();
 
 ////////////////////////////////////////////////////////////////////
 // Render tracks to HTML
