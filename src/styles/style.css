@@ -1,22 +1,30 @@
 /*
-  Josh Comeau Reset https://www.joshwcomeau.com/css/custom-css-reset/ with my tweaks 
+  Josh Comeau Reset https://www.joshwcomeau.com/css/custom-css-reset/
+  1. Use a more-intuitive box-sizing model.
 */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+/*
+  2. Remove default margin
+*/
 * {
   margin: 0;
 }
-html:focus-within {
-  scroll-behavior: smooth;
-}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeSpeed;
 }
+/*
+  5. Improve media defaults
+*/
 img,
 picture,
 video,
@@ -25,20 +33,18 @@ svg {
   display: block;
   max-width: 100%;
 }
+/*
+  6. Remove built-in form typography styles
+*/
 input,
 button,
 textarea,
 select {
   font: inherit;
 }
-a {
-  text-decoration: none;
-  color: inherit;
-}
-a,
-button {
-  cursor: pointer;
-}
+/*
+  7. Avoid text overflows
+*/
 p,
 h1,
 h2,
@@ -47,36 +53,4 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-}
-ol,
-ul {
-  list-style: none;
-}
-.visually-hidden {
-  border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important;
-  -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  margin: -1px !important;
-  padding: 0 !important;
-  position: absolute !important;
-  width: 1px !important;
-  white-space: nowrap !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }
