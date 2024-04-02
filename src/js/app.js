@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* eslint max-classes-per-file: "off" */
+/* eslint-disable-next-line */
 
 // Fetch tracks from Spotify API
 /* Basic Auth */
@@ -25,7 +26,6 @@ const response = await fetch(
 );
 const data = await response.json();
 const accessToken = data.access_token;
-/* eslint-disable *//* eslint-disable *//* eslint-disable *//* eslint-disable */console.log(...oo_oo(`2309280646_28_60_28_194_4`, ...oo_oo(`450674457_28_40_28_137_4`, ...oo_oo(`2046519605_28_20_28_80_4`, ...oo_oo(`3862538326_28_0_28_24_4`, accessToken)))));
 
 const fetchTracks = async (playlistId, accessToken) => {
     try {
@@ -56,13 +56,11 @@ const handleData = async () => {
     try {
         const fetchedData = await fetchTracks(playlistId, accessToken);
         if (fetchedData) {
-      /* eslint-disable *//* eslint-disable *//* eslint-disable *//* eslint-disable */console.log(...oo_oo(`2309280646_59_66_59_215_4`, ...oo_oo(`450674457_59_46_59_158_4`, ...oo_oo(`2046519605_59_26_59_100_4`, ...oo_oo(`3862538326_59_6_59_44_4`, `processing tracks......`)))));
             processTracks(fetchedData);
         } else {
             console.error(`Failed to fetch the tracks`);
         }
     } catch (error) {
-    /* eslint-disable *//* eslint-disable *//* eslint-disable *//* eslint-disable */console.log(...oo_oo(`2309280646_65_64_65_219_4`, ...oo_oo(`450674457_65_44_65_162_4`, ...oo_oo(`2046519605_65_24_65_104_4`, ...oo_oo(`3862538326_65_4_65_48_4`, `Error fetching tracks:`, error)))));
     }
 };
 
@@ -96,7 +94,6 @@ const processTracks = (data) => {
             artistId,
         });
     });
-  /* eslint-disable *//* eslint-disable *//* eslint-disable *//* eslint-disable */console.log(...oo_oo(`2309280646_99_62_99_195_4`, ...oo_oo(`450674457_99_42_99_138_4`, ...oo_oo(`2046519605_99_22_99_81_4`, ...oo_oo(`3862538326_99_2_99_25_4`, tracksInfo)))));
     return tracksInfo;
 };
 const tracksInfo = handleData()
