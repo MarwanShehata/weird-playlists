@@ -3,12 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/src/styles/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/src/styles/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite.js Vanilla Template</title>
+    <title>Weird Shit</title>
   </head>
-
   <body>
-    <div id="app"></div>
+    <section class="home">
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-controls">
+          <ol class="carousel-indicators">
+            <li
+              data-target="#carousel"
+              data-slide-to="0"
+              class="active"
+              id="indicator-1"
+            ></li>
+            <!-- <li data-target="#carousel" data-slide-to="1" id="indicator-2"></li> -->
+            <!-- <li data-target="#carousel" data-slide-to="2" id="indicator-3"></li> -->
+            <!-- <li data-target="#carousel" data-slide-to="2" id="indicator-4"></li> -->
+          </ol>
+          <a
+            class="carousel-control-prev"
+            href="#carousel"
+            role="button"
+            data-slide="prev"
+          >
+            <img src="./assets/img/left-arrow.svg" alt="Prev" />
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carousel"
+            role="button"
+            data-slide="next"
+          >
+            <img src="./assets/img/right-arrow.svg" alt="Next" />
+          </a>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" id="bg-1"><div class="container"><h2>I'm Rose</h2><p>Web Developer</p></div></div>
+          <!-- <div class="carousel-item" id="bg-2"><div class="container"><h2>I'm Jasmine</h2><p>Hello world</p></div></div> -->
+          <!-- <div class="carousel-item" id="bg-3"><div class="container"><h2>I'm Ruby</h2><p>Hello world</p></div></div> -->
+          <!-- <div class="carousel-item" id="bg-4"><div class="container"><h2>I'm Marwan</h2><p>Hello world</p></div></div> -->
+        </div>
+      </div>
+    </section>
+
+    <script src="/src/js/bootstrap.min.js"></script>
     <script type="module" src="/src/js/main.js"></script>
     <script type="module" src="/src/js/api.js"></script>
     <script type="module" src="/src/js/ui.js"></script>

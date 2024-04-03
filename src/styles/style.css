@@ -1,56 +1,185 @@
-/*
-  Josh Comeau Reset https://www.joshwcomeau.com/css/custom-css-reset/
-  1. Use a more-intuitive box-sizing model.
-*/
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.home .carousel-item {
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
 }
-/*
-  2. Remove default margin
-*/
-* {
-  margin: 0;
+
+.home .carousel-item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
 }
-/*
-  Typographic tweaks!
-  3. Add accessible line-height
-  4. Improve text rendering
-*/
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+
+.home .carousel-item .container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
-/*
-  5. Improve media defaults
-*/
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
+
+.home .carousel-item h2 {
+    font-size: 80px;
+    color: #ffffff;
+    margin: 0 0 10px;
+    opacity: 0;
 }
-/*
-  6. Remove built-in form typography styles
-*/
-input,
-button,
-textarea,
-select {
-  font: inherit;
+
+.home .carousel-item p {
+    font-size: 30px;
+    margin: 0;
+    color: #eeeeee;
+    opacity: 0;
 }
-/*
-  7. Avoid text overflows
-*/
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
+
+.home .carousel-item.active h2 {
+    animation: fadeInLeft 0.5s ease forwards;
+}
+
+.home .carousel-item.active p {
+    animation: fadeInRight 0.5s ease forwards;
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.home .carousel-controls {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    z-index: 10;
+    transform: translateX(-50%);
+}
+
+.home .carousel-indicators {
+    position: relative;
+    margin: 0;
+}
+
+.home .carousel-indicators li {
+    height: 70px;
+    width: 70px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.home .carousel-indicators li.active {
+    border-color: #ffffff;
+    transform: scale(1.2);
+}
+
+.home .carousel-control-next,
+.home .carousel-control-prev {
+    height: 60px;
+    width: 60px;
+    opacity: 1;
+    z-index: 3;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.home .carousel-control-next:hover,
+.home .carousel-control-prev:hover {
+    box-shadow: 0 0 10px #ffffff;
+}
+
+.home .carousel-control-next img,
+.home .carousel-control-prev img {
+    width: 30px;
+}
+
+.home .carousel-control-next {
+    right: -90px;
+}
+
+.home .carousel-control-prev {
+    left: -90px;
+}
+
+/*responsive*/
+@media (max-width: 767px) {
+
+    .home .carousel-control-next,
+    .home .carousel-control-prev {
+        display: none;
+    }
+
+    .home .carousel-indicators li {
+        height: 60px;
+        width: 60px;
+    }
+
+    .home .carousel-item h2 {
+        font-size: 45px;
+    }
+
+    .home .carousel-item p {
+        font-size: 22px;
+    }
+}
+
+#indicator-1 {
+    background-image: url('../../assets/img/img-1.jpg');
+}
+
+#indicator-2 {
+    background-image: url('../../assets/img/img-2.jpg');
+}
+
+#indicator-3 {
+    background-image: url('../../assets/img/img-3.jpg');
+}
+
+#indicator-4 {
+    background-image: url('../../assets/img/img-4.jpg');
+}
+
+#bg-1 {
+    background-image: url('./assets/img/img-4.jpg');
+}
+
+#bg-2 {
+    background-image: url('./assets/img/img-5.jpg');
+}
+
+#bg-3 {
+    background-image: url('./assets/img/img-6.jpg');
+}
+
+#bg-4 {
+    background-image: url('./assets/img/img-7.jpg');
 }

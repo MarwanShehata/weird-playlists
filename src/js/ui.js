@@ -4,10 +4,9 @@
 import { handleData } from './api';
 
 const init = async () => {
-    const data = await handleData();
-    const { tracksInfo, playlistInfo } = data;
-    console.log(tracksInfo);
-    console.log(playlistInfo);
-
+  const data = await handleData();
+  const { tracksInfo, playlistInfo } = data;
+  // console.log(tracksInfo);
+  // console.log(playlistInfo);
 };
 init();

@@ -130,4 +130,10 @@ const processPlaylistInfo = (data) => {
   return playlistInfo;
 };
 
+/* next 4 lines to be removed */
+const data = await handleData();
+const { tracksInfo, playlistInfo } = data;
+console.log(tracksInfo);
+console.log(playlistInfo);
+
 export { handleData };
