@@ -319,3 +319,13 @@ const app = {
 app.start();
 
 //////////////////////////
+function populatePlaylistDetails() {
+  const trackList = document.querySelector('#track-list');
+
+  playlistInfo.forEach((playlist) => {
+    const playlistCard = createPlaylistCard(playlist);
+    trackList.insertAdjacentElement('afterend', playlistCard);
+  });
+
+  // Assuming playlistInfo is an array and you want to use the first playlist's thumbnail
+}

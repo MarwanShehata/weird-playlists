@@ -6,9 +6,9 @@
 /* Basic Auth */
 const clientId = import.meta.env.VITE_CLIENTID;
 const clientSecret = import.meta.env.VITE_CLIENTSECRET;
-const playlistId = '6XVNcaZKzxdErXvCj9JCEe';
+const playlistId = '2Djd5E3rzmD4ucdleg3Kt0';
 const fields =
-  'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id))';
+  'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id)),name';
 /* BY USING FIELDS I REDUCED THE DATA CONSUMPTION FROM 301KB TO 70KB (TESTED WITH Postman) */
 
 let accessToken;
@@ -112,6 +112,7 @@ const processPlaylistInfo = (data) => {
 
   /* <Misc> */
   const playlistSpotifyLink = data.external_urls.spotify;
+  const playlistName = data.name;
   const previewThumbnailLink = data.images[0].url;
   const playlistID = data.id;
   const playlistDescription = data.description;
@@ -120,6 +121,7 @@ const processPlaylistInfo = (data) => {
   const ownerURL = data.owner.external_urls.spotify;
 
   playlistInfo.push({
+    playlistName,
     playlistSpotifyLink,
     previewThumbnailLink,
     playlistID,
