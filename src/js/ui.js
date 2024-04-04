@@ -8,5 +8,6 @@ const init = async () => {
   const { tracksInfo, playlistInfo } = data;
   // console.log(tracksInfo);
   // console.log(playlistInfo);
+
 };
 init();

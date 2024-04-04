@@ -3,8 +3,79 @@
     --text-color: #333;
 }
 
+/*
+  Josh Comeau Reset https://www.joshwcomeau.com/css/custom-css-reset/
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
+/*
+  2. Remove default margin
+*/
+* {
+    margin: 0;
+}
 
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: inherit;
+}
 
 /* */
 
@@ -188,8 +259,16 @@ html {
 
 #bg-1 {
     /* Gradient Bg */
-    background: rgb(238, 174, 202);
-    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+    /* https://csshero.org/mesher/ */
+    background-color: hsla(0, 100%, 50%, 1);
+    background-image:
+        radial-gradient(at 40% 20%, hsla(28, 100%, 74%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 50%, hsla(340, 100%, 76%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(22, 100%, 77%, 1) 0px, transparent 50%),
+        radial-gradient(at 80% 100%, hsla(242, 100%, 70%, 1) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
 
     display: flex;
     justify-content: center;
@@ -198,19 +277,44 @@ html {
 
 #bg-2 {
 
-    background-image: url('./assets/img/img-5.jpg');
+    background-color: #ffd199;
+    background-image:
+        radial-gradient(at 27% 17%, hsla(335, 79%, 71%, 1) 0px, transparent 50%),
+        radial-gradient(at 63% 63%, hsla(244, 88%, 66%, 1) 0px, transparent 50%),
+        radial-gradient(at 73% 68%, hsla(304, 87%, 75%, 1) 0px, transparent 50%),
+        radial-gradient(at 43% 12%, hsla(19, 91%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 21% 37%, hsla(169, 66%, 67%, 1) 0px, transparent 50%),
+        radial-gradient(at 18% 50%, hsla(263, 99%, 74%, 1) 0px, transparent 50%),
+        radial-gradient(at 36% 41%, hsla(65, 85%, 78%, 1) 0px, transparent 50%);
 }
 
 #bg-3 {
-    background-image: url('./assets/img/img-6.jpg');
+    background-color: #ffd199;
+    background-image:
+        radial-gradient(at 27% 17%, hsla(335, 79%, 71%, 1) 0px, transparent 50%),
+        radial-gradient(at 63% 63%, hsla(244, 88%, 66%, 1) 0px, transparent 50%),
+        radial-gradient(at 73% 68%, hsla(304, 87%, 75%, 1) 0px, transparent 50%),
+        radial-gradient(at 43% 12%, hsla(19, 91%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 21% 37%, hsla(169, 66%, 67%, 1) 0px, transparent 50%),
+        radial-gradient(at 18% 50%, hsla(263, 99%, 74%, 1) 0px, transparent 50%),
+        radial-gradient(at 36% 41%, hsla(65, 85%, 78%, 1) 0px, transparent 50%);
 }
 
 #bg-4 {
-    background-image: url('./assets/img/img-7.jpg');
+    background-color: #ff99b8;
+    background-image:
+        radial-gradient(at 53% 50%, hsla(352, 64%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 24% 42%, hsla(177, 94%, 73%, 1) 0px, transparent 50%),
+        radial-gradient(at 28% 32%, hsla(347, 65%, 77%, 1) 0px, transparent 50%),
+        radial-gradient(at 96% 91%, hsla(339, 71%, 79%, 1) 0px, transparent 50%),
+        radial-gradient(at 65% 64%, hsla(59, 89%, 73%, 1) 0px, transparent 50%),
+        radial-gradient(at 70% 70%, hsla(189, 77%, 62%, 1) 0px, transparent 50%),
+        radial-gradient(at 97% 64%, hsla(226, 83%, 75%, 1) 0px, transparent 50%);
 }
 
 /******/
 /* song cards */
+
 .song-card {
     display: flex;
     align-items: center;
@@ -261,7 +365,7 @@ html {
 }
 
 .song-card .author {
-    font-size: 12px;
+    font-size: 12px !important;
     color: #999;
 }
 
@@ -275,7 +379,7 @@ html {
 #track-list {
     width: 50%;
     height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-inline: 10px;
     padding-inline: 10px;
 
@@ -288,7 +392,7 @@ html {
 
 /* two column playlist */
 .playlist-container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* max-width: 100%; */
     width: 90%;
 
@@ -296,6 +400,10 @@ html {
     align-items: center;
     justify-content: center;
 
+    padding: 12px;
+
+    background-color: hsla(0, 0%, 20%, 0.1);
+    border-radius: 8px;
 }
 
 .playlist-details {
@@ -321,7 +429,18 @@ html {
     background-size: cover;
 }
 
+.playlist-title {
+    font-size: 22px;
+}
 
+.playlist-description {
+    font-size: 16px !important;
+}
+
+.playlist-type {
+    font-size: 12px;
+    font-weight: bold;
+}
 
 
 /************************DON'T DELETE****************************/
