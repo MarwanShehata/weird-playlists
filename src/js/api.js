@@ -6,7 +6,7 @@
 /* Basic Auth */
 const clientId = import.meta.env.VITE_CLIENTID;
 const clientSecret = import.meta.env.VITE_CLIENTSECRET;
-const playlistId = '2Djd5E3rzmD4ucdleg3Kt0';
+const playlistId = ['2Djd5E3rzmD4ucdleg3Kt0', '7k4tBESqMxHmpX2sjt601W'];
 const fields =
   'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id)),name';
 /* BY USING FIELDS I REDUCED THE DATA CONSUMPTION FROM 301KB TO 70KB (TESTED WITH Postman) */
@@ -57,6 +57,7 @@ const fetchTracks = async (playlistId, accessToken) => {
 /* Handling Data */
 const handleData = async () => {
   try {
+
     await basicAuth();
     const fetchedData = await fetchTracks(playlistId, accessToken);
     console.log(fetchedData);
