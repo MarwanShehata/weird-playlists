@@ -60,7 +60,7 @@ const fetchTracks = async (playlistId, accessToken) => {
 };
 
 /* Handling Data */
-const handleData = async () => {
+export const handleData = async () => {
   try {
     await basicAuth();
     let tracksInfo = []; // Added
@@ -84,8 +84,8 @@ const handleData = async () => {
         return null;
       }
     }
-    console.log(tracksInfo);
-    console.log(playlistInfo);
+    // console.log(tracksInfo);
+    // console.log(playlistInfo);
     return { playlistInfo, tracksInfo };
   } catch (error) {
     console.error(error);
@@ -156,9 +156,8 @@ const processPlaylistInfo = (data) => {
 };
 
 /* next 4 lines to be removed */
-const data = await handleData();
-const { tracksInfo, playlistInfo } = data;
-console.log(tracksInfo);
-console.log(playlistInfo);
+// const { tracksInfo, playlistInfo } = await handleData(); // this line calls the handle data a second time
+// console.log(tracksInfo);
+// console.log(playlistInfo);
 
-export { handleData };
+// export { handleData };
