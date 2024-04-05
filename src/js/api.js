@@ -30,8 +30,11 @@ const basicAuth = async () => {
   const data = await response.json();
   accessToken = data.access_token;
 };
-
+const playlistCache = new Map();
 const fetchTracks = async (playlistId, accessToken) => {
+  if (playlistCache.has(playlistId)) {
+    return playlistCache.get(playlistId);
+  }
   try {
     const fetchOptions = {
       method: 'GET',
@@ -47,7 +50,9 @@ const fetchTracks = async (playlistId, accessToken) => {
     if (!response.ok) {
       throw new Error('Failed to fetch tracks');
     }
-    return await response.json();
+    const data=await response.json()
+    playlistCache.set(playlistId, data);
+    return data;
   } catch (error) {
     console.error(error);
     return null;
