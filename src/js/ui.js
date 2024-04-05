@@ -191,10 +191,11 @@ const init = async () => {
   }
   populatePlaylistDetails();
 
-
   if (playlistInfo.length > 0) {
     const firstPlaylist = playlistInfo[0];
-    const indicator = document.querySelector(`#indicator-${playlistInfo.length}`);
+    const indicator = document.querySelector(
+      `#indicator-${playlistInfo.length}`,
+    );
     if (indicator) {
       indicator.style.backgroundImage = `url(${firstPlaylist.previewThumbnailLink})`;
     }

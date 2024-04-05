@@ -6,9 +6,9 @@
 /* Basic Auth */
 const clientId = import.meta.env.VITE_CLIENTID;
 const clientSecret = import.meta.env.VITE_CLIENTSECRET;
-const playlistId = ['2Djd5E3rzmD4ucdleg3Kt0', '7k4tBESqMxHmpX2sjt601W'];
+const playlistIDs = ['0ZXVX604hmghJgqWCMsqcU', '6XVNcaZKzxdErXvCj9JCEe'];
 const fields =
-  'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id)),name';
+  'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id))';
 /* BY USING FIELDS I REDUCED THE DATA CONSUMPTION FROM 301KB TO 70KB (TESTED WITH Postman) */
 
 let accessToken;
@@ -57,18 +57,31 @@ const fetchTracks = async (playlistId, accessToken) => {
 /* Handling Data */
 const handleData = async () => {
   try {
-
     await basicAuth();
-    const fetchedData = await fetchTracks(playlistId, accessToken);
-    console.log(fetchedData);
-    if (fetchedData) {
-      const playlistInfo = processPlaylistInfo(fetchedData);
-      const tracksInfo = processTracks(fetchedData);
-      return { playlistInfo, tracksInfo };
-    } else {
-      console.error(`Failed to fetch the tracks`);
-      return null;
+    let tracksInfo = []; // Added
+    let playlistInfo = []; // Added    
+   
+    for (const playlistId of playlistIDs) {
+      const fetchedData = await fetchTracks(playlistId, accessToken); // Not efficient if there're duplicates
+      console.log(fetchedData);
+      if (fetchedData) {
+        const playlistInfoItem = processPlaylistInfo(fetchedData);
+        const tracksInfoItem = processTracksInfo(fetchedData);
+        playlistInfo.push(playlistInfoItem);
+        tracksInfo.push(tracksInfoItem);
+        // console.log(playlistInfo);
+        // console.log(tracksInfo);
+        // return { playlistInfo, tracksInfo }; // Wrong, this will return only the 1st one
+      } else {
+        console.error(
+          `Failed to fetch the tracks for playlist ID: ${playlistId}`,
+        );
+        return null;
+      }
     }
+    console.log(tracksInfo);
+    console.log(playlistInfo);
+    return { playlistInfo, tracksInfo };
   } catch (error) {
     console.error(error);
     return null;
@@ -76,8 +89,11 @@ const handleData = async () => {
 };
 
 /* Tidying up the response */
-const processTracks = (data) => {
-  let tracksInfo = [];
+const processTracksInfo = (data) => {
+  let tracksInfo = {
+    playlistID: data.id,
+    tracks: [],
+  };
 
   data.tracks.items.forEach((item) => {
     /* <Misc> */
@@ -93,7 +109,7 @@ const processTracks = (data) => {
     const artistUrl = item.track.artists[0].external_urls.spotify;
     const artistId = item.track.artists[0].id;
 
-    tracksInfo.push({
+    tracksInfo.tracks.push({
       trackSpotifyLink,
       previewThumbnailLink,
       previewUrl,
@@ -109,11 +125,13 @@ const processTracks = (data) => {
 };
 
 const processPlaylistInfo = (data) => {
-  let playlistInfo = [];
+  let playlistInfoObject = {
+    playlistID: data.id,
+    playlistData: [],
+  };
 
   /* <Misc> */
   const playlistSpotifyLink = data.external_urls.spotify;
-  const playlistName = data.name;
   const previewThumbnailLink = data.images[0].url;
   const playlistID = data.id;
   const playlistDescription = data.description;
@@ -121,8 +139,7 @@ const processPlaylistInfo = (data) => {
   const ownerName = data.owner.display_name;
   const ownerURL = data.owner.external_urls.spotify;
 
-  playlistInfo.push({
-    playlistName,
+  playlistInfoObject.playlistData.push({
     playlistSpotifyLink,
     previewThumbnailLink,
     playlistID,
@@ -130,7 +147,7 @@ const processPlaylistInfo = (data) => {
     ownerName,
     ownerURL,
   });
-  return playlistInfo;
+  return playlistInfoObject;
 };
 
 /* next 4 lines to be removed */
