@@ -140,30 +140,40 @@ const init = async () => {
     return playlistCard;
   }
 
-  function populateSongList() {
-    const trackList = document.querySelector('#track-list');
+  function populateSongList(playlistIndex) {
+    const trackList = document.querySelector(
+      `[data-playlist-index="${playlistIndex}"]`,
+    );
     trackList.innerHTML = '';
 
-    tracksInfo[0].tracks.forEach((song) => {
+    tracksInfo[playlistIndex].tracks.forEach((song) => {
       const songCard = createSongCard(song);
       trackList.appendChild(songCard);
     });
   }
-  populateSongList();
+  // populateSongList();
 
-  function populatePlaylistDetails() {
-    const trackList = document.querySelector('#track-list');
+  function populatePlaylistDetails(playlistIndex) {
+    const trackList = document.querySelector(
+      `[data-playlist-index="${playlistIndex}"]`,
+    );
 
-    const playlistCard = createPlaylistCard(playlistInfo[0].playlistData[0]);
+    const playlistCard = createPlaylistCard(
+      playlistInfo[playlistIndex].playlistData[0],
+    );
     trackList.insertAdjacentElement('afterend', playlistCard);
   }
-  populatePlaylistDetails();
-
-  if (playlistInfo.length > 0) {
-    const firstPlaylist = playlistInfo[0];
-    const indicator = document.querySelector('#indicator-1');
+  // populatePlaylistDetails();
+  
+  // Added: Loop through playlists and populate tracks and playlist details for each carousel item
+  for (let i = 0; i < tracksInfo.length; i++) {
+    populateSongList(i); // Modified: Pass the playlist index
+    populatePlaylistDetails(i); // Modified: Pass the playlist index
+  }
+  for (let i = 0; i < playlistInfo.length; i++) {
+    const indicator = document.querySelector(`#indicator-${i + 1}`);
     if (indicator) {
-      indicator.style.backgroundImage = `url(${firstPlaylist.playlistData[0].previewThumbnailLink})`; // Modified: Use the first playlist's previewThumbnailLink
+      indicator.style.backgroundImage = `url(${playlistInfo[i].playlistData[0].previewThumbnailLink})`;
     }
   }
 };
