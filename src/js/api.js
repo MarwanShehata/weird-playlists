@@ -6,12 +6,40 @@
 /* Basic Auth */
 const clientId = import.meta.env.VITE_CLIENTID;
 const clientSecret = import.meta.env.VITE_CLIENTSECRET;
-const playlistIDs = [
-  '0ZXVX604hmghJgqWCMsqcU',
-  '6XVNcaZKzxdErXvCj9JCEe',
-  '0NDl9nb1Hn9p7VOFJlPcHo',
-  '0RqAn6oSZtB3Bad9qeQ7mA',
-];
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function randomizeStrings(strings) {
+  const shuffledStrings = shuffleArray([...strings]); // Create a copy to avoid mutating the original array
+  return shuffledStrings.slice(0, 3); // Return the first three elements
+}
+
+const playlistIDs = randomizeStrings([
+  '1nswO3VrI4lpbViAIJWki9',
+  '2Djd5E3rzmD4ucdleg3Kt0',
+  '6O8wFpsgfGV6yBBur1tbOz',
+  '0XcqppLE0vOScqRJY5ElJw',
+  '5Zq5qGBlazIpN5OdDuIjCo',
+  '7HhPmyyrYSoeXv1FNLXW6k',
+  '0YXSaCQf45KtpAtMIkH3us',
+  '5uFzeiPsDiltRtVOmwaBWu',
+  '5uFzeiPsDiltRtVOmwaBWu',
+  '23YuPS9GCH0Naekwy5p8y3',
+  '0K73PVRpoDWaR96h7sE6Mh',
+  '780BO4foiyFyU7ryViNSd6',
+  '3NCv0NSKE7zavNbAs8fjxD',
+  '3MZi3XjNsgL5VSvCgIgcmN',
+  '60dxZ2uTqxYEGDrpOxrjsW',
+  '5iNq6K8ZEpqYWu6tPzjBns',
+  '3SeGBx830MuaXXtTukaT9s',
+  '73NZd0wQ8fg820YetwSOYF',
+]);
 const fields =
   'external_urls.spotify,images.url,id,description,owner.display_name,owner.external_urls.spotify,tracks.items(track(external_urls.spotify,album.images.url,preview_url,name,id,track_number),track.artists(name,external_urls.spotify,id)),name';
 /* BY USING FIELDS I REDUCED THE DATA CONSUMPTION FROM 301KB TO 70KB (TESTED WITH Postman) */

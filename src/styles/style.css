@@ -248,15 +248,15 @@ html {
 }
 
 #indicator-2 {
-  background-image: url('../../assets/img/img-2.jpg');
+  /* background-image: url('../../assets/img/img-2.jpg'); */
 }
 
 #indicator-3 {
-  background-image: url('../../assets/img/img-3.jpg');
+  /* background-image: url('../../assets/img/img-3.jpg'); */
 }
 
 #indicator-4 {
-  background-image: url('../../assets/img/img-4.jpg');
+  /* background-image: url('../../assets/img/img-4.jpg'); */
 }
 
 #bg-1 {
@@ -419,7 +419,6 @@ html {
 }
 
 .playlist-details {
-  border: #ec1f55 1px solid;
   display: flex;
   justify-content: center;
   align-items: center;
