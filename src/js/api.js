@@ -50,7 +50,7 @@ const fetchTracks = async (playlistId, accessToken) => {
     if (!response.ok) {
       throw new Error('Failed to fetch tracks');
     }
-    const data=await response.json()
+    const data = await response.json();
     playlistCache.set(playlistId, data);
     return data;
   } catch (error) {
@@ -64,8 +64,8 @@ export const handleData = async () => {
   try {
     await basicAuth();
     let tracksInfo = []; // Added
-    let playlistInfo = []; // Added    
-   
+    let playlistInfo = []; // Added
+
     for (const playlistId of playlistIDs) {
       const fetchedData = await fetchTracks(playlistId, accessToken); // Not efficient if there're duplicates
       console.log(fetchedData);
@@ -154,10 +154,3 @@ const processPlaylistInfo = (data) => {
   });
   return playlistInfoObject;
 };
-
-/* next 4 lines to be removed */
-// const { tracksInfo, playlistInfo } = await handleData(); // this line calls the handle data a second time
-// console.log(tracksInfo);
-// console.log(playlistInfo);
-
-// export { handleData };

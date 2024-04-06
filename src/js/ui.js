@@ -140,64 +140,124 @@ const init = async () => {
     return playlistCard;
   }
 
-  // const tracksInfo = [
+  // const tracksInfo =
+  // [
   //   {
-  //      trackSpotifyLink: "https://open.spotify.com/track/4m0q0xQ2BNl9SCAGKyfiGZ",
-  //      previewThumbnailLink: "https://i.scdn.co/image/ab67616d0000b273206517a3f7e4c34bf0bfc531",
-  //      previewUrl: null,
-  //      trackName: "Somebody Else",
-  //      trackId: "4m0q0xQ2BNl9SCAGKyfiGZ",
-  //      trackNumber: 10,
-  //      artistName: "The 1975",
-  //      artistUrl: "https://open.spotify.com/artist/3mIj9lX2MWuHmhNCA7LSCW",
-  //      artistId: "3mIj9lX2MWuHmhNCA7LSCW"
+  //       "playlistID": "0ZXVX604hmghJgqWCMsqcU",
+  //       "tracks": [
+  //           {
+  //               "trackSpotifyLink": "https://open.spotify.com/track/0bjrZv6I3T0nMRfBhsC16Y",
+  //               "previewThumbnailLink": "https://i.scdn.co/image/ab67616d0000b27363aa7ad66a20dd69eb287a48",
+  //               "previewUrl": "https://p.scdn.co/mp3-preview/b2392b184e3969738fe8fadc1b3fa7e09a13e134?cid=ed65a662e90742a582aacac11d9d6fd2",
+  //               "trackName": "Make You Happy",
+  //               "trackId": "0bjrZv6I3T0nMRfBhsC16Y",
+  //               "trackNumber": 1,
+  //               "artistName": "Betablock3r",
+  //               "artistUrl": "https://open.spotify.com/artist/1s5qarNhu9YkU9fFVSFcnk",
+  //               "artistId": "1s5qarNhu9YkU9fFVSFcnk"
+  //           },
+  //           {
+  //               "trackSpotifyLink": "https://open.spotify.com/track/7gRVrDCQcoEnHrPxdblf6I",
+  //               "previewThumbnailLink": "https://i.scdn.co/image/ab67616d0000b2738059a4ea6a9ba10a02b2f71e",
+  //               "previewUrl": null,
+  //               "trackName": "Life Is Good",
+  //               "trackId": "7gRVrDCQcoEnHrPxdblf6I",
+  //               "trackNumber": 4,
+  //               "artistName": "Dynamicduo",
+  //               "artistUrl": "https://open.spotify.com/artist/4nvFFLtv7ZqoTr83387uK4",
+  //               "artistId": "4nvFFLtv7ZqoTr83387uK4"
+  //           },
+  //           {
+  //             ...some more songs
+  //           }
+  //       ]
   //   },
-  //   // More song objects...
-  //  ];
+  //   {
+  //       "playlistID": "6XVNcaZKzxdErXvCj9JCEe",
+  //       "tracks": [
+  //           {
+  //               "trackSpotifyLink": "https://open.spotify.com/track/7nMlbqphtRihR99FYtaPc9",
+  //               "previewThumbnailLink": "https://i.scdn.co/image/ab67616d0000b273f5ed099669f7244e18d90fa1",
+  //               "previewUrl": "https://p.scdn.co/mp3-preview/60aac34f6cde21bfb51bbe818900a5f3f675c925?cid=ed65a662e90742a582aacac11d9d6fd2",
+  //               "trackName": "Paraphernalia",
+  //               "trackId": "7nMlbqphtRihR99FYtaPc9",
+  //               "trackNumber": 1,
+  //               "artistName": "Temples",
+  //               "artistUrl": "https://open.spotify.com/artist/4ogwGU9VPWrnVBs1GEwZVV",
+  //               "artistId": "4ogwGU9VPWrnVBs1GEwZVV"
+  //           },
+  //           {
+  //               "trackSpotifyLink": "https://open.spotify.com/track/6K4t31amVTZDgR3sKmwUJJ",
+  //               "previewThumbnailLink": "https://i.scdn.co/image/ab67616d0000b2739e1cfc756886ac782e363d79",
+  //               "previewUrl": null,
+  //               "trackName": "The Less I Know The Better",
+  //               "trackId": "6K4t31amVTZDgR3sKmwUJJ",
+  //               "trackNumber": 7,
+  //               "artistName": "Tame Impala",
+  //               "artistUrl": "https://open.spotify.com/artist/5INjqkS1o8h1imAzPqGZBb",
+  //               "artistId": "5INjqkS1o8h1imAzPqGZBb"
+  //           },
+  //           {
+  //             ...more songs
+  //           }
+  //       ]
+  //   }
+  // ]
 
   function populateSongList() {
     const trackList = document.querySelector('#track-list');
     trackList.innerHTML = '';
 
-    tracksInfo.forEach((song) => {
+    tracksInfo[0].tracks.forEach((song) => {
       const songCard = createSongCard(song);
       trackList.appendChild(songCard);
     });
   }
   populateSongList();
 
-  // const playlistInfo = [
+  // const playlistInfo =
+  // [
   //   {
-  //     playlistName: 'Psychedelic Pop',
-  //     playlistSpotifyLink:
-  //       'https://open.spotify.com/playlist/6XVNcaZKzxdErXvCj9JCEe',
-  //     previewThumbnailLink:
-  //       'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebb6ee2f37cb0a15a9d998c1d54',
-  //     playlistID: '6XVNcaZKzxdErXvCj9JCEe',
-  //     playlistDescription: 'Dreamy Music for Your Trip',
-  //     ownerName: 'Marwan Shehata',
-  //     ownerURL: 'https://open.spotify.com/user/thelostelite'
+  //       "playlistID": "0ZXVX604hmghJgqWCMsqcU",
+  //       "playlistData": [
+  //           {
+  //               "playlistSpotifyLink": "https://open.spotify.com/playlist/0ZXVX604hmghJgqWCMsqcU",
+  //               "previewThumbnailLink": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebb3e92c22d045bbe6f5e381815",
+  //               "playlistID": "0ZXVX604hmghJgqWCMsqcU",
+  //               "playlistDescription": "Songs used in MKBHD videos. Starting in 2019.",
+  //               "ownerName": "Marques Brownlee",
+  //               "ownerURL": "https://open.spotify.com/user/mkbhd"
+  //           }
+  //       ]
   //   },
-  // ... the rest of playlists here
+  //   {
+  //       "playlistID": "6XVNcaZKzxdErXvCj9JCEe",
+  //       "playlistData": [
+  //           {
+  //               "playlistSpotifyLink": "https://open.spotify.com/playlist/6XVNcaZKzxdErXvCj9JCEe",
+  //               "previewThumbnailLink": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebb6ee2f37cb0a15a9d998c1d54",
+  //               "playlistID": "6XVNcaZKzxdErXvCj9JCEe",
+  //               "playlistDescription": "Dreamy Music for Your Trip",
+  //               "ownerName": "Marwan Shehata",
+  //               "ownerURL": "https://open.spotify.com/user/thelostelite"
+  //           }
+  //       ]
+  //   }
   // ]
 
   function populatePlaylistDetails() {
     const trackList = document.querySelector('#track-list');
 
-    playlistInfo.forEach((playlist) => {
-      const playlistCard = createPlaylistCard(playlist);
-      trackList.insertAdjacentElement('afterend', playlistCard);
-    });
+    const playlistCard = createPlaylistCard(playlistInfo[0].playlistData[0]);
+    trackList.insertAdjacentElement('afterend', playlistCard);
   }
   populatePlaylistDetails();
 
   if (playlistInfo.length > 0) {
     const firstPlaylist = playlistInfo[0];
-    const indicator = document.querySelector(
-      `#indicator-${playlistInfo.length}`,
-    );
+    const indicator = document.querySelector('#indicator-1'); // Modified: Use the first indicator
     if (indicator) {
-      indicator.style.backgroundImage = `url(${firstPlaylist.previewThumbnailLink})`;
+      indicator.style.backgroundImage = `url(${firstPlaylist.playlistData[0].previewThumbnailLink})`; // Modified: Use the first playlist's previewThumbnailLink
     }
   }
 };
