@@ -109,7 +109,7 @@ html {
   z-index: -1;
 }
 
-.home .carousel-item .container {
+.home .carousel-item .playlist-container {
   position: absolute;
   left: 50%;
   top: 50%;

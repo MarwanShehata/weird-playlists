@@ -158,13 +158,14 @@ const init = async () => {
       `[data-playlist-index="${playlistIndex}"]`,
     );
 
+
     const playlistCard = createPlaylistCard(
       playlistInfo[playlistIndex].playlistData[0],
     );
     trackList.insertAdjacentElement('afterend', playlistCard);
   }
   // populatePlaylistDetails();
-  
+
   // Added: Loop through playlists and populate tracks and playlist details for each carousel item
   for (let i = 0; i < tracksInfo.length; i++) {
     populateSongList(i); // Modified: Pass the playlist index
